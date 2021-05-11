@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "question": "Do you want to stay in Berlin by",
+        "options": ["hours?", "days?", "month?"]
+    },
+    {
+        "id": 2,
+        "question": "How many hours will you stay?",
+        "options": []
+    },
+    {
+        "id": 3,
+        "question": "How many days will you stay?",
+        "options": []
+    },
+    {
+        "id": 4,
+        "question": "How many months will you stay?",
+        "options": []
+    },
+    {
+        "id": 5,
+        "question": "What types of transportation will you use?",
+        "options": ["S-bahns or/and underground", "Trams or/and Buses", "Conbined"]
+    },
+    {
+        "id": 6,
+        "question": "Will you often travel during the stay?",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 7,
+        "question": "Will you visit multiple destinations using the ticket?",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 8,
+        "question": "Does the trip using S-bahns or/and underground have less than 3 stations",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 9,
+        "question": "Does the trip using Trams or/and Buses have less than 6 stations",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 10,
+        "question": "How many destinations/trips will you have?",
+        "options": []
+    },
+    {
+        "id": 11,
+        "question": "How many trips per day will you have?",
+        "options": []
+    },
+    {
+        "id": 12,
+        "question": "Will you always travel after 10 AM?",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 13,
+        "question": "Are you an adult (greater than 14 years old?",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 14,
+        "question": "How many adults will travel with you?",
+        "options": []
+    },
+    {
+        "id": 15,
+        "question": "Do you bring a bicycle?",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 15,
+        "question": "How many bicycles will your group bring?",
+        "options": []
+    }
+]
