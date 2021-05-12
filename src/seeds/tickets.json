@@ -11,7 +11,9 @@
     {
         "id": 2,
         "type": "short-tickets",
-        "fares": {"normal": 3.50, "reduced": 2.40}
+        "tickets": [
+            {"zone": "", "fares": {"normal": 3.50, "reduced": 2.40}}
+        ]
     },
     {
         "id": 3,

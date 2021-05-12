@@ -6,8 +6,8 @@
     },
     {
         "id": 1,
-        "question": "Do you want to stay in Berlin by",
-        "options": ["hours?", "days?", "month?"]
+        "question": "How long will you stay in Berlin?",
+        "options": ["hours", "days", "month"]
     },
     {
         "id": 2,
@@ -66,8 +66,8 @@
     },
     {
         "id": 13,
-        "question": "Are you an adult (greater than 14 years old?",
-        "options": [true, false]
+        "question": "Are you an adult (greater than 14 years old)?",
+        "options": ["Yes", "No"]
     },
     {
         "id": 14,
