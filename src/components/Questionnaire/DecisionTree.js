@@ -1,27 +1,21 @@
-import QuestionTree from "./QuestionTree";
-
 function findQuestionAnswerInStore(question_id, answerPool) {
   return answerPool.filter((question) => question.question === question_id)[0]
     .answer;
 }
 
-export default QuestionTree;
-function nextQuestion(currentQuestion, store_question_answer) {
+function findNextQuestion(currentQuestion, answerPool) {
   const currentQuestionId = currentQuestion.id;
-  const answer = findQuestionAnswerInStore(
-    currentQuestionId,
-    store_question_answer
-  );
-  const answerQuestion1 = findQuestionAnswerInStore(1, store_question_answer);
-  const answerQuestion3 = findQuestionAnswerInStore(3, store_question_answer);
-  const answerQuestion6 = findQuestionAnswerInStore(6, store_question_answer);
-  const answerQuestion7 = findQuestionAnswerInStore(7, store_question_answer);
-  const answerQuestion8 = findQuestionAnswerInStore(8, store_question_answer);
-  const answerQuestion9 = findQuestionAnswerInStore(9, store_question_answer);
-  const answerQuestion10 = findQuestionAnswerInStore(10, store_question_answer);
-  const answerQuestion11 = findQuestionAnswerInStore(11, store_question_answer);
-  const answerQuestion12 = findQuestionAnswerInStore(12, store_question_answer);
-  const answerQuestion13 = findQuestionAnswerInStore(13, store_question_answer);
+  const answer = findQuestionAnswerInStore(currentQuestionId, answerPool);
+  const answerQuestion1 = findQuestionAnswerInStore(1, answerPool);
+  const answerQuestion3 = findQuestionAnswerInStore(3, answerPool);
+  const answerQuestion6 = findQuestionAnswerInStore(6, answerPool);
+  const answerQuestion7 = findQuestionAnswerInStore(7, answerPool);
+  const answerQuestion8 = findQuestionAnswerInStore(8, answerPool);
+  const answerQuestion9 = findQuestionAnswerInStore(9, answerPool);
+  const answerQuestion10 = findQuestionAnswerInStore(10, answerPool);
+  const answerQuestion11 = findQuestionAnswerInStore(11, answerPool);
+  const answerQuestion12 = findQuestionAnswerInStore(12, answerPool);
+  const answerQuestion13 = findQuestionAnswerInStore(13, answerPool);
 
   switch (currentQuestionId) {
     case 1:
@@ -216,6 +210,8 @@ function nextQuestion(currentQuestion, store_question_answer) {
       return 0;
   }
 }
+
+export default findNextQuestion;
 
 // example of storing questions and answers
 // const store_question_answer = [

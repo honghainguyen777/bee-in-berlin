@@ -1,13 +1,22 @@
 // import logo from './logo.svg';
-import BasicTree from "../QuestionTree";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Questionnaire from "../Questionnaire";
+import { fetchQuestionPool, fetchTickets } from "../../actions";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <BasicTree />
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchQuestionPool();
+    this.props.fetchTickets();
+  }
+  render() {
+    return (
+      <div className="App">
+        <Questionnaire />
+      </div>
+    );
+  }
 }
 
-export default App;
+export default connect(null, { fetchQuestionPool, fetchTickets })(App);

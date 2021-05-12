@@ -1,5 +1,10 @@
 [
     {
+        "id": 0,
+        "question": "What's your name?",
+        "options": []
+    },
+    {
         "id": 1,
         "question": "Do you want to stay in Berlin by",
         "options": ["hours?", "days?", "month?"]
@@ -22,7 +27,7 @@
     {
         "id": 5,
         "question": "What types of transportation will you use?",
-        "options": ["S-bahns or/and underground", "Trams or/and Buses", "Conbined"]
+        "options": ["S-Bahns or/and underground", "Trams or/and Buses", "Conbined"]
     },
     {
         "id": 6,
@@ -31,7 +36,7 @@
     },
     {
         "id": 7,
-        "question": "Will you visit multiple destinations using the ticket?",
+        "question": "Will you visit multiple destinations with return?",
         "options": ["Yes", "No"]
     },
     {
@@ -62,21 +67,31 @@
     {
         "id": 13,
         "question": "Are you an adult (greater than 14 years old?",
-        "options": ["Yes", "No"]
+        "options": [true, false]
     },
     {
         "id": 14,
-        "question": "How many adults will travel with you?",
-        "options": []
+        "question": "Are you in a group of up to 5 persons?",
+        "options": ["Yes", "No"]
     },
     {
         "id": 15,
+        "question": "Do you want to buy a group ticket?",
+        "options": ["Yes", "No"]
+    },
+    {
+        "id": 16,
         "question": "Do you bring a bicycle?",
         "options": ["Yes", "No"]
     },
     {
-        "id": 15,
+        "id": 17,
         "question": "How many bicycles will your group bring?",
         "options": []
+    },
+    {
+        "id": 18,
+        "question": "Which Berlin Zone is your trips in (AB, BC, ABC)?",
+        "options": ["AB", "BC", "ABC"]
     }
 ]
