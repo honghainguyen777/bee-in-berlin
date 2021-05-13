@@ -7,7 +7,7 @@
     {
         "id": 1,
         "question": "How long will you stay in Berlin?",
-        "options": ["hours", "days", "month"]
+        "options": ["Hours", "Days", "Months"]
     },
     {
         "id": 2,

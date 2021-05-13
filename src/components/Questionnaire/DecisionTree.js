@@ -5,11 +5,11 @@ function findNextQuestion(currentQuestionId, answerPool) {
     case 0:
       return 1;
     case 1:
-      if (answer === "hours") return 5;
-      if (answer === "days") return 3;
+      if (answer === "Hours") return 5;
+      if (answer === "Days") return 3;
       return 12;
     case 3:
-      if (answer > 14) return 13;
+      if (answer > 14) return 12;
       return 6;
     case 5:
       if (answer === "S-Bahns or/and underground") return 8;
@@ -49,8 +49,8 @@ function findNextQuestion(currentQuestionId, answerPool) {
     // case 15:
     //   return;
     case 18:
-      // if adult is true and duration of stay is in hours
-      if (answerPool[13] && answerPool[1] === "hours") {
+      // if adult is true and duration of stay is in Hours
+      if (answerPool[13] && answerPool[1] === "Hours") {
         // if not multiple destinations or no return -
         if (!answerPool[7]) {
           if (answer === "AB")
@@ -76,8 +76,8 @@ function findNextQuestion(currentQuestionId, answerPool) {
           return { ticketId: 1, zone: "ABC", fareType: "normal" }; // 2 x ticket T1_ABC
         }
       }
-      // if adult is false and duration of stay is in hours -> reduced tickets
-      if (!answerPool[13] && answerPool[1] === "hours") {
+      // if adult is false and duration of stay is in Hours -> reduced tickets
+      if (!answerPool[13] && answerPool[1] === "Hours") {
         // if not multiple destinations or no return -
         if (!answerPool[7]) {
           if (answer === "AB")
@@ -104,9 +104,9 @@ function findNextQuestion(currentQuestionId, answerPool) {
         }
       }
 
-      // if adult is true and duration of stay is in days
-      if (answerPool[13] && answerPool[1] === "days") {
-        // if the duration of stay is less than 5 (1 - 4 days)
+      // if adult is true and duration of stay is in Days
+      if (answerPool[13] && answerPool[1] === "Days") {
+        // if the duration of stay is less than 5 (1 - 4 Days)
         if (answerPool[3] < 5) {
           // if travel often or number of trips per day greater than 2
           if (answerPool[6] || answerPool[11] > 2) {
@@ -124,7 +124,7 @@ function findNextQuestion(currentQuestionId, answerPool) {
             return { ticketId: 1, zone: "ABC", fareType: "normal" }; // ticket T1_ABC
           }
         }
-        // multiple destinations and return - number of trips between 5 and 14 days
+        // multiple destinations and return - number of trips between 5 and 14 Days
         if (answerPool[3] >= 5 && answerPool[3] <= 14) {
           // if travel often or number of trips per day greater than 2
           if (answerPool[6] || answerPool[11] > 2) {
@@ -160,9 +160,9 @@ function findNextQuestion(currentQuestionId, answerPool) {
         }
       }
 
-      // if adult is false and duration of stay is in days
-      if (!answerPool[13] && answerPool[1] === "days") {
-        // if the duration of stay is less than 5 (1 - 4 days)
+      // if adult is false and duration of stay is in Days
+      if (!answerPool[13] && answerPool[1] === "Days") {
+        // if the duration of stay is less than 5 (1 - 4 Days)
         if (answerPool[3] < 5) {
           // if travel often or number of trips per day greater than 2
           if (answerPool[6] || answerPool[11] > 2) {
@@ -180,7 +180,7 @@ function findNextQuestion(currentQuestionId, answerPool) {
             return { ticketId: 1, zone: "ABC", fareType: "reduced" }; // ticket T1_ABC1
           }
         }
-        // multiple destinations and return - number of trips between 5 and 14 days
+        // multiple destinations and return - number of trips between 5 and 14 Days
         if (answerPool[3] >= 5 && answerPool[3] <= 14) {
           // if travel often or number of trips per day greater than 2
           if (answerPool[6] || answerPool[11] > 2) {
@@ -216,8 +216,8 @@ function findNextQuestion(currentQuestionId, answerPool) {
         }
       }
 
-      // if duration of stay is in months
-      if (answerPool[1] === "months") {
+      // if duration of stay is in Months
+      if (answerPool[1] === "Months") {
         if (answerPool[12]) {
           if (answer === "AB")
             return { ticketId: 9, zone: "AB", fareType: "reduced" }; // ticket T9_AB1

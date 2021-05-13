@@ -9,12 +9,13 @@ class Questionnaire extends Component {
     this.state = {
       currentQuestionId: 1,
       currentAnswerType: "select",
-      isRenderResult: false,
+      ticket: null,
       inputValue: "",
     };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.findNextQuestion = findNextQuestion;
+    this.renderResult = this.renderResult.bind(this);
   }
 
   onChangeHandler(event) {
@@ -24,7 +25,13 @@ class Questionnaire extends Component {
   }
 
   renderResult(ticket) {
-    console.log("End");
+    return (
+      <div className="ticket">
+        You should by {ticket.fareType} {ticket.ticketType}{" "}
+        {ticket.zone ? `for zone ${ticket.zone}` : ""} for the price of{" "}
+        {ticket.price}€
+      </div>
+    );
   }
 
   async nextQuestion() {
@@ -48,20 +55,29 @@ class Questionnaire extends Component {
 
     // ticket return, preform rendering
     if (typeof nextQuestionId === "object") {
+      // nextQuestionId is misleading in this case.
+      // When there is no next question, ticket will be returned
       const ticketShortInfo = nextQuestionId;
+      // get all the tickets in the same type (exp. type = single-trip tickets)
       const ticketsFamily = this.props.tickets.filter(
         (tk) => tk.id === ticketShortInfo.ticketId
       )[0];
       const ticketType = ticketsFamily.type;
-      console.log(ticketsFamily);
+
+      // price of the recommened ticket
       const price = ticketsFamily.tickets.filter(
         (tk) => tk.zone === ticketShortInfo.zone
       )[0].fares[ticketShortInfo.fareType];
-      console.log({
+
+      const ticket = {
         ticketType,
         zone: ticketShortInfo.zone,
         fareType: ticketShortInfo.fareType,
         price,
+      };
+      console.log(ticket);
+      this.setState(() => {
+        return { ticket: ticket };
       });
       return;
     }
@@ -103,6 +119,7 @@ class Questionnaire extends Component {
           <input type="number" min={1} onChange={this.onChangeHandler} />
         ) : null}
         <button onClick={this.nextQuestion}>Next Step</button>
+        {this.state.ticket ? this.renderResult(this.state.ticket) : null}
       </div>
     );
   }
