@@ -18,7 +18,7 @@
 
 - Step 1: Clone or download the app: `git clone https://github.com/honghainguyen777/bee-in-berlin.git`
 - Step 2: Enter the app directory: `cd bee-in-berlin`
-- Step 3: Install dependency packages: `npm install` or `yarn install` (make sure you already have Node, npm/yarn installed)
+- Step 3: Install dependency packages: `npm install` or `yarn add` (make sure you already have Node, npm/yarn installed)
 - Step 4: Run the app: `npm start` or `yarn start`
 - Step 5: Enjoy finding your Berlin public transport ticket
 
