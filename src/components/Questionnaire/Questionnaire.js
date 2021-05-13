@@ -35,7 +35,6 @@ class Questionnaire extends Component {
   }
 
   onChangeHandler(event) {
-    console.log(event.target.value);
     this.setState(() => {
       return { inputValue: event.target.value };
     });
@@ -313,7 +312,6 @@ class Questionnaire extends Component {
 
 const mapStateToProps = (state) => {
   const { questionPool, tickets } = state.initialData;
-  console.log({ pool: state.answerPool });
   return {
     questionPool,
     tickets,

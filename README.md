@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Bee In Berlin - A Berlin Public Ticket Recommendation Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Is it your first time in Berlin?
+- Do you see that the Berlin public transport map is complicated?
+- You know what Berlin public transport zones are, but you don't know which ticket fits your plan and time, don't you?
+- You know the ticket you want to buy in English but does not know it in German and how much does it cost?
+- => This small application can help you. You just need to answer some questions according to your plan -> We give you the information of the ticket!
+- Visit the website to find a suitable ticket for your trips in Berlin:
 
-## Available Scripts
+## What's tech stack used to build the application?
 
-In the project directory, you can run:
+- JavaScript
+- React
+- Redux
+- CSS
 
-### `yarn start`
+## How to run the application
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Step 1: Clone or download the app: `git clone https://github.com/honghainguyen777/bee-in-berlin.git`
+- Step 2: Enter the app directory: `cd bee-in-berlin`
+- Step 3: Install dependency packages: `npm install` or `yarn install` (make sure you already have Node, npm/yarn installed)
+- Step 4: Run the app: `npm start` or `yarn start`
+- Step 5: Enjoy finding your Berlin public transport ticket
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Decision Tree
 
-### `yarn test`
+- The app is based one sligtly complicated decision tree.
+- Depending on the anwer from users for each question, a decision is made behind the scenes.
+- There are 18 questions in the question pool. The answers of users can lead to one of the 9 family tickets (in total 46 tickets - note some tickets have the same price between reduced and normal fares).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Plans for future developmet
 
-### `yarn build`
+- Due to current restriction in time, no unit testing is available. Jest and Enzyme will be used for implementing unit testion.
+- Plain text for the recommended ticket will be replaced by ticket image
+- Some tickets and questions have not yet been implemented due to the complexity of the decision tree
+- Styles need to be improved
+- The normal import of the seeds (json data files) needs to be replaced by Webpack-dev-server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Mistakes and Challenges
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Created many questions and tickets that led to the complexity of the decision tree -> time consumption
+- First time using Tailwind CSS -> mixed with normal CSS
+- Implemented Redux in this small application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Directory Structure
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+|   .gitignore
+|   package-lock.json
+|   package.json
+|   README.md
+|
++---public
+|       favicon.ico
+|       index.html
+|       logo192.png
+|       logo512.png
+|       manifest.json
+|       robots.txt
+|
+\---src
+    |   index.css
+    |   index.js
+    |   reportWebVitals.js
+    |   setupTests.js
+    |
+    +---actions
+    |       index.js
+    |       types.js
+    |
+    +---components
+    |   +---App
+    |   |       App.css
+    |   |       App.js
+    |   |       App.test.js
+    |   |       index.js
+    |   |
+    |   +---NameModal
+    |   |       index.js
+    |   |       NameModal.css
+    |   |       NameModal.js
+    |   |
+    |   +---Navbar
+    |   |       bvg-logo.png
+    |   |       index.js
+    |   |       Navbar.css
+    |   |       Navbar.js
+    |   |
+    |   \---Questionnaire
+    |           decisionTree.js
+    |           index.js
+    |           Questionnaire.css
+    |           Questionnaire.js
+    |
+    +---reducers
+    |       index.js
+    |       initialAppReducer.js
+    |       updateUserAnswerPoolReducer.js
+    |
+    \---seeds
+            questions.json
+            tickets.json
+```
