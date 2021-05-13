@@ -1,40 +1,118 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { findNextQuestion } from "./decisionTree";
-import { updateUserAnswerPool } from "../../actions";
+import {
+  updateUserAnswerPool,
+  removeAnAnswerFromAnswerPool,
+  restartQuestionnaire,
+} from "../../actions";
+import "./Questionnaire.css";
+
+const initialState = {
+  ticket: null,
+  currentQuestionId: 1,
+  currentAnswerType: "select",
+  inputValue: "",
+  prevQuestionIds: [],
+  prevInputs: [],
+  prevAnswerTypes: [],
+  isStart: false,
+  error: false,
+};
 
 class Questionnaire extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentQuestionId: 1,
-      currentAnswerType: "select",
-      ticket: null,
-      inputValue: "",
+      ...initialState,
     };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.findNextQuestion = findNextQuestion;
-    this.renderResult = this.renderResult.bind(this);
+    this.renderTicket = this.renderTicket.bind(this);
+    this.previousQuestion = this.previousQuestion.bind(this);
+    this.restartApplication = this.restartApplication.bind(this);
   }
 
   onChangeHandler(event) {
+    console.log(event.target.value);
     this.setState(() => {
       return { inputValue: event.target.value };
     });
   }
 
-  renderResult(ticket) {
+  renderTicket(ticket) {
     return (
       <div className="ticket">
-        You should by {ticket.fareType} {ticket.ticketType}{" "}
-        {ticket.zone ? `for zone ${ticket.zone}` : ""} for the price of{" "}
-        {ticket.price}€
+        <div className="ticket-recommendation">Ticket Recommendation:</div>
+        <p>
+          - Ticket name (German):{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {ticket.ticketNameDE} Berlin {ticket.zone}
+          </span>
+        </p>
+        <p>
+          - Ticket name (English):{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {ticket.ticketNameEN} Berlin {ticket.zone}
+          </span>
+        </p>
+        <p>
+          - Zone:{" "}
+          <span style={{ fontWeight: "bold" }}>Berlin {ticket.zone}</span>
+        </p>
+        <p>
+          - Fare type:{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {ticket.ticketType === "normal"
+              ? "Normal (normal)"
+              : "Reduced (ermäßigt)"}
+          </span>
+        </p>
+        <p>
+          - Price:{" "}
+          <span style={{ fontWeight: "bold" }}>{ticket.price.toFixed(2)}€</span>
+        </p>
+        <hr className="mt-6" />
+        <div
+          style={{ textAlign: "center", fontSize: "20px", fontWeight: "bold" }}
+        >
+          Happy Travelling!
+        </div>
+      </div>
+    );
+  }
+
+  renderAllQuestionsAnswers() {
+    const questionIds = Object.keys(this.props.answerPool);
+    return (
+      <div className="questionnaire-questions-answers">
+        <div className="questionnaire-decisions">Your decisions:</div>
+        {questionIds.map((id) => {
+          return (
+            <p key={id}>
+              {"- "}
+              {this.props.questionPool[id].question}{" "}
+              <span className="questionnaire-answer">
+                {typeof this.props.answerPool[id] !== "boolean"
+                  ? this.props.answerPool[id]
+                  : this.props.answerPool[id]
+                  ? "Yes"
+                  : "No"}
+              </span>
+            </p>
+          );
+        })}
       </div>
     );
   }
 
   async nextQuestion() {
+    if (!this.state.inputValue) {
+      return this.setState({ error: true });
+    }
+
+    this.setState({ error: false });
     // update answerPool in redux store
     // using await allows to get the updated answerPool
     await this.props.updateUserAnswerPool(
@@ -46,8 +124,6 @@ class Questionnaire extends Component {
       this.state.currentQuestionId,
       this.props.answerPool
     );
-
-    console.log({ nextQuestionId });
 
     // handle error case
     if (nextQuestionId === 0) {
@@ -63,6 +139,8 @@ class Questionnaire extends Component {
         (tk) => tk.id === ticketShortInfo.ticketId
       )[0];
       const ticketType = ticketsFamily.type;
+      const ticketNameDE = ticketsFamily.name_de;
+      const ticketNameEN = ticketsFamily.name_en;
 
       // price of the recommened ticket
       const price = ticketsFamily.tickets.filter(
@@ -74,20 +152,35 @@ class Questionnaire extends Component {
         zone: ticketShortInfo.zone,
         fareType: ticketShortInfo.fareType,
         price,
+        ticketNameDE,
+        ticketNameEN,
       };
-      console.log(ticket);
       this.setState(() => {
-        return { ticket: ticket };
+        return { ticket: ticket, isStart: false };
       });
       return;
     }
 
-    this.setState(() => {
-      return { currentQuestionId: nextQuestionId };
+    // if ticket is not returned, update the start for rendering the next question
+    this.setState((prevState, props) => {
+      return {
+        currentQuestionId: nextQuestionId,
+        inputValue: "",
+        prevQuestionIds: [
+          ...prevState.prevQuestionIds,
+          prevState.currentQuestionId,
+        ],
+        prevInputs: [...prevState.prevInputs, prevState.inputValue],
+        prevAnswerTypes: [
+          ...prevState.prevAnswerTypes,
+          prevState.currentAnswerType,
+        ],
+        isStart: true,
+      };
     });
 
     if (this.props.questionPool[nextQuestionId].options.length) {
-      this.setState(() => {
+      this.setState((prevState, props) => {
         return { currentAnswerType: "select" };
       });
     } else {
@@ -97,37 +190,130 @@ class Questionnaire extends Component {
     }
   }
 
+  async previousQuestion() {
+    // remove question and answer in the answerPool
+    await this.props.removeAnAnswerFromAnswerPool(this.state.currentQuestionId);
+
+    this.setState((prevState, props) => {
+      const prevQuestionId = prevState.prevQuestionIds.pop();
+      const prevInputs = prevState.prevInputs.pop();
+      const prevAnswerType = prevState.prevAnswerTypes.pop();
+      const isAtStart = prevState.prevQuestionId !== 1;
+
+      return {
+        currentQuestionId: prevQuestionId,
+        inputValue: prevInputs,
+        currentAnswerType: prevAnswerType,
+        prevQuestionIds: prevState.prevQuestionIds,
+        prevInputs: prevState.prevInputs,
+        prevAnswerTypes: prevState.prevAnswerTypes,
+        isStart: isAtStart,
+      };
+    });
+  }
+
+  async restartApplication() {
+    this.setState(() => {
+      return { ...initialState };
+    });
+    await this.props.restartQuestionnaire();
+  }
+
   render() {
     if (!this.props.questionPool) return <p>Loading!</p>;
+
+    // handle restarting behavior from Navbar component
+    if (this.props.isRestart) {
+      this.restartApplication();
+      this.props.toggleRestart(false);
+    }
     return (
       <div className="component-questionnaire">
-        <h1>
-          {this.props.questionPool[this.state.currentQuestionId].question}
-        </h1>
-        {this.state.currentAnswerType === "select" ? (
-          <select name="answer" id="answer" onChange={this.onChangeHandler}>
-            {this.props.questionPool[this.state.currentQuestionId].options.map(
-              (option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              )
-            )}
-          </select>
+        {this.state.ticket ? (
+          this.renderAllQuestionsAnswers()
+        ) : (
+          <>
+            <div className="questionnaire-question">
+              {this.props.questionPool[this.state.currentQuestionId].question}
+            </div>
+            <div className="select-field">
+              {this.state.currentAnswerType === "select"
+                ? this.props.questionPool[
+                    this.state.currentQuestionId
+                  ].options.map((option) => (
+                    <React.Fragment key={option}>
+                      <input
+                        type="radio"
+                        name={option}
+                        id={option}
+                        value={option}
+                        onChange={this.onChangeHandler}
+                        checked={this.state.inputValue === option}
+                      />
+                      <label htmlFor={option}>{option}</label>
+                    </React.Fragment>
+                  ))
+                : null}
+            </div>
+            <div>
+              {this.state.currentAnswerType === "input" ? (
+                <input
+                  type="number"
+                  min={1}
+                  value={this.state.inputValue}
+                  onChange={this.onChangeHandler}
+                />
+              ) : null}
+            </div>
+          </>
+        )}
+        {this.state.ticket ? this.renderTicket(this.state.ticket) : null}
+
+        {this.state.error ? (
+          <div className="questionaire-error">
+            You need to select or type your option!
+          </div>
         ) : null}
-        {this.state.currentAnswerType === "input" ? (
-          <input type="number" min={1} onChange={this.onChangeHandler} />
-        ) : null}
-        <button onClick={this.nextQuestion}>Next Step</button>
-        {this.state.ticket ? this.renderResult(this.state.ticket) : null}
+
+        <div className="inline-flex mt-5 buttons">
+          {this.state.isStart ? (
+            <button
+              className="text-orange-500 bg-transparent border border-solid border-orange-500 hover:bg-orange-500 hover:text-white active:bg-orange-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mx-4 ease-linear transition-all duration-150"
+              type="button"
+              onClick={this.previousQuestion}
+            >
+              <i className="fas fa-backward"></i> Previous Step
+            </button>
+          ) : null}
+
+          {!this.state.ticket ? (
+            <button
+              className="text-emerald-500 bg-transparent border border-solid border-emerald-500 hover:bg-emerald-500 hover:text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mx-4  ease-linear transition-all duration-150"
+              type="button"
+              onClick={this.nextQuestion}
+            >
+              Next Step <i className="fas fa-forward"></i>
+            </button>
+          ) : null}
+
+          {this.state.ticket ? (
+            <button
+              className="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              onClick={this.restartApplication}
+            >
+              <i className="fas fa-power-off"></i> Restart
+            </button>
+          ) : null}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   const { questionPool, tickets } = state.initialData;
+  console.log({ pool: state.answerPool });
   return {
     questionPool,
     tickets,
@@ -135,6 +321,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateUserAnswerPool })(
-  Questionnaire
-);
+export default connect(mapStateToProps, {
+  updateUserAnswerPool,
+  removeAnAnswerFromAnswerPool,
+  restartQuestionnaire,
+})(Questionnaire);

@@ -1,5 +1,15 @@
+body,
+html,
+#root {
+  height: 100%;
+  background-image: url("https://images4.alphacoders.com/552/thumb-1920-552459.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
+  background-color: white;
 }
 
 .App-logo {

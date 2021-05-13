@@ -41,12 +41,12 @@
     },
     {
         "id": 8,
-        "question": "Does the trip using S-bahns or/and underground have less than 3 stations",
+        "question": "Does the trip using S-bahns or/and underground have less than 3 stations?",
         "options": ["Yes", "No"]
     },
     {
         "id": 9,
-        "question": "Does the trip using Trams or/and Buses have less than 6 stations",
+        "question": "Does the trip using Trams or/and Buses have less than 6 stations?",
         "options": ["Yes", "No"]
     },
     {

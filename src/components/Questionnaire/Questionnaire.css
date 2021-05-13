@@ -1,0 +1,106 @@
+@keyframes animated-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(63, 155, 35, 0.658);
+  }
+  100% {
+    box-shadow: 0 0 0 20px hsla(293, 83%, 47%, 0.021);
+  }
+}
+
+.component-questionnaire {
+  position: fixed;
+  animation: animated-border 1.5s infinite;
+  background: white;
+  width: 800px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 10px;
+}
+
+.select-field input:-webkit-autofill,
+.select-field input:-webkit-autofill:hover,
+.select-field input:-webkit-autofill:focus,
+.select-field input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.select-field {
+  width: 100%;
+}
+
+.questionnaire-question {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.questionaire-error {
+  font-size: 16px;
+  font-weight: 400;
+  color: red;
+}
+
+.select-field label {
+  text-transform: uppercase;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #000;
+  height: 45px;
+  margin: 1rem;
+}
+
+.select-field label:hover {
+  background-color: black;
+  color: white;
+}
+
+.select-field input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.select-field input[type="radio"]:checked + label {
+  background-color: black;
+  color: white;
+}
+
+.select-field input[type="radio"]:focus + label {
+  border: 1px solid black;
+}
+
+.questionnaire-buttons {
+  width: 400px;
+}
+
+.questionnaire-questions-answers,
+.ticket {
+  text-align: left;
+  width: 80%;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+
+.questionnaire-decisions,
+.ticket-recommendation {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.questionnaire-answer {
+  font-weight: bold;
+}

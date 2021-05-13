@@ -2,6 +2,8 @@
     {
         "id": 1,
         "type": "single-tickets",
+        "name_de": "Einzelfahrschein",
+        "name_en": "Single ticket",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 3.00, "reduced": 1.90}},
             {"zone": "BC", "fares": {"normal": 3.50, "reduced": 2.40}},
@@ -11,6 +13,8 @@
     {
         "id": 2,
         "type": "short-tickets",
+        "name_de": "Kurzstrecke",
+        "name_en": "Short trip ticket",
         "tickets": [
             {"zone": "", "fares": {"normal": 3.50, "reduced": 2.40}}
         ]
@@ -18,6 +22,8 @@
     {
         "id": 3,
         "type": "4-trip-tickets",
+        "name_de": "4-Fahrten-Karte",
+        "name_en": "4-trip ticket",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 9.40, "reduced": 5.80}},
             {"zone": "BC", "fares": {"normal": 12.60, "reduced": 8.60}},
@@ -27,11 +33,15 @@
     {
         "id": 4,
         "type": "4-short-trip-tickets",
+        "name_de": "4-Fahrten-Karte Kurzstrecke",
+        "name_en": "4-short trip ticket",
         "fares": {"normal": 6.00, "reduced": 4.60}
     },
     {
         "id": 5,
         "type": "24-hour-tickets",
+        "name_de": "24-Stunden-Karte",
+        "name_en": "24-hour ticket",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 8.80, "reduced": 5.60}},
             {"zone": "BC", "fares": {"normal": 9.20, "reduced": 5.90}},
@@ -41,6 +51,8 @@
     {
         "id": 6,
         "type": "24-hour-small-group-tickets",
+        "name_de": "24-Stunden-Karte",
+        "name_en": "24-hour small group ticket",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 25.50, "reduced": 25.50}},
             {"zone": "BC", "fares": {"normal": 26.00, "reduced": 26.00}},
@@ -50,6 +62,8 @@
     {
         "id": 7,
         "type": "7-day-tickets",
+        "name_de": "7-Tage-Karte VBB-Umweltkarte",
+        "name_en": "7-day ticket VBB",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 36.00, "reduced": 36.00}},
             {"zone": "BC", "fares": {"normal": 37.00, "reduced": 37.00}},
@@ -59,6 +73,8 @@
     {
         "id": 8,
         "type": "monthly-tickets",
+        "name_de": "Monatskarte",
+        "name_en": "Monthly ticket",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 86.00, "reduced": 86.00}},
             {"zone": "BC", "fares": {"normal": 89.00, "reduced": 89.00}},
@@ -68,6 +84,8 @@
     {
         "id": 9,
         "type": "10am-monthly-tickets",
+        "name_de": "10-Uhr-Karte",
+        "name_en": "10 o’clock ticket",
         "tickets": [
             {"zone": "AB", "fares": {"normal": 63.00, "reduced": 63.00}},
             {"zone": "BC", "fares": {"normal": 65.00, "reduced": 65.00}},

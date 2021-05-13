@@ -1,0 +1,87 @@
+.component-name-modal {
+  position: fixed;
+  animation: animated-border 1.5s infinite;
+  background: white;
+  width: 450px;
+  height: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 10px;
+}
+
+.name-modal-question {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.name-modal-error {
+  font-size: medium;
+  color: red;
+  font-weight: 600;
+}
+
+.component-name-modal > button {
+  margin-top: 20px;
+  width: 300px;
+  color: white;
+  font-size: 16px;
+  padding: 12px 12px;
+  cursor: pointer;
+  background-color: black;
+  border: 2px solid black;
+}
+
+.component-name-modal > button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.component-name-modal > input {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  width: 340px;
+  height: 35px;
+  border-radius: 0;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.component-name-modal input::placeholder {
+  color: #000;
+  font-family: "akzidenz-grotesk_proregular";
+}
+
+.component-name-modal [placeholder]:focus::-webkit-input-placeholder {
+  text-indent: -200%;
+  opacity: 1;
+}
+
+.component-name-modal input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.component-name-modal button:active {
+  outline: none;
+  border: none;
+}
+
+.component-name-modal button:focus {
+  outline: none;
+  border: none;
+}

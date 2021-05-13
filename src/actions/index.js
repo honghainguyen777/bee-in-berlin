@@ -5,6 +5,8 @@ import {
   FETCH_QUESTION_POOL,
   FETCH_TICKETS,
   UPDATE_USER_ANSWER_POOL,
+  REMOVE_AN_ANSWER,
+  RESTART_QUESTIONNAIRE,
 } from "./types";
 
 export const fetchQuestionPool = () => (dispatch) => {
@@ -24,4 +26,15 @@ export const updateUserAnswerPool = (questionId, answer) => (dispatch) => {
     type: UPDATE_USER_ANSWER_POOL,
     payload: { questionId, answer },
   });
+};
+
+export const removeAnAnswerFromAnswerPool = (questionId) => (dispatch) => {
+  dispatch({
+    type: REMOVE_AN_ANSWER,
+    payload: { questionId },
+  });
+};
+
+export const restartQuestionnaire = () => (dispatch) => {
+  dispatch({ type: RESTART_QUESTIONNAIRE });
 };

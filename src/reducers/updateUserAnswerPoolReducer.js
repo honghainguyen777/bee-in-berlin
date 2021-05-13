@@ -1,4 +1,8 @@
-import { UPDATE_USER_ANSWER_POOL } from "../actions/types";
+import {
+  UPDATE_USER_ANSWER_POOL,
+  REMOVE_AN_ANSWER,
+  RESTART_QUESTIONNAIRE,
+} from "../actions/types";
 
 const updateUserAnswerPoolReducer = (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +12,12 @@ const updateUserAnswerPoolReducer = (state = {}, action) => {
         ...state,
         [questionId]: answer,
       };
+    case REMOVE_AN_ANSWER:
+      const copiedState = { ...state };
+      delete copiedState[action.payload.questionId];
+      return copiedState;
+    case RESTART_QUESTIONNAIRE:
+      return {};
     default:
       return state;
   }
