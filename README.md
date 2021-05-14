@@ -5,7 +5,7 @@
 - You know what Berlin public transport zones are, but you don't know which ticket fits your plan and time, don't you?
 - You know the ticket you want to buy in English but does not know it in German and how much does it cost?
 - => This small application can help you. You just need to answer some questions according to your plan -> We give you the information of the ticket!
-- Visit the website to find a suitable ticket for your trips in Berlin:
+- Visit the website to find a suitable ticket for your trips in Berlin: https://honghainguyen777.github.io/bee-in-berlin/
 
 ## What's tech stack used to build the application?
 

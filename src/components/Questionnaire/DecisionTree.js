@@ -30,7 +30,7 @@ function findNextQuestion(currentQuestionId, answerPool) {
       if (answer) return 13;
       return 7;
     case 10:
-      return;
+      return 13;
     case 11:
       return 13;
     case 12:
