@@ -219,17 +219,33 @@ function findNextQuestion(currentQuestionId, answerPool) {
       // if duration of stay is in Months
       if (answerPool[1] === "Months") {
         if (answerPool[12]) {
-          if (answer === "AB")
-            return { ticketId: 9, zone: "AB", fareType: "reduced" }; // ticket T9_AB1
-          if (answer === "BC")
-            return { ticketId: 9, zone: "BC", fareType: "reduced" }; // ticket T9_BC1
-          return { ticketId: 9, zone: "ABC", fareType: "reduced" }; // ticket T9_ABC1
+          if (answerPool[13]) {
+            if (answer === "AB")
+              return { ticketId: 9, zone: "AB", fareType: "normal" }; // ticket T9_AB1
+            if (answer === "BC")
+              return { ticketId: 9, zone: "BC", fareType: "normal" }; // ticket T9_BC1
+            return { ticketId: 9, zone: "ABC", fareType: "normal" }; // ticket T9_ABC1
+          } else {
+            if (answer === "AB")
+              return { ticketId: 9, zone: "AB", fareType: "reduced" }; // ticket T9_AB1
+            if (answer === "BC")
+              return { ticketId: 9, zone: "BC", fareType: "reduced" }; // ticket T9_BC1
+            return { ticketId: 9, zone: "ABC", fareType: "reduced" }; // ticket T9_ABC1
+          }
         } else {
-          if (answer === "AB")
-            return { ticketId: 8, zone: "AB", fareType: "reduced" }; // ticket T8_AB1
-          if (answer === "BC")
-            return { ticketId: 8, zone: "BC", fareType: "reduced" }; // ticket T8_BC1
-          return { ticketId: 8, zone: "ABC", fareType: "reduced" }; // ticket T8_ABC1
+          if (answerPool[13]) {
+            if (answer === "AB")
+              return { ticketId: 8, zone: "AB", fareType: "normal" }; // ticket T8_AB1
+            if (answer === "BC")
+              return { ticketId: 8, zone: "BC", fareType: "normal" }; // ticket T8_BC1
+            return { ticketId: 8, zone: "ABC", fareType: "normal" }; // ticket T8_ABC1
+          } else {
+            if (answer === "AB")
+              return { ticketId: 8, zone: "AB", fareType: "reduced" }; // ticket T8_AB1
+            if (answer === "BC")
+              return { ticketId: 8, zone: "BC", fareType: "reduced" }; // ticket T8_BC1
+            return { ticketId: 8, zone: "ABC", fareType: "reduced" }; // ticket T8_ABC1
+          }
         }
       }
 

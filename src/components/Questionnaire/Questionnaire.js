@@ -63,7 +63,7 @@ class Questionnaire extends Component {
         <p>
           - Fare type:{" "}
           <span style={{ fontWeight: "bold" }}>
-            {ticket.ticketType === "normal"
+            {ticket.fareType === "normal"
               ? "Normal (normal)"
               : "Reduced (ermäßigt)"}
           </span>
@@ -190,6 +190,7 @@ class Questionnaire extends Component {
   }
 
   async previousQuestion() {
+    if (this.state.currentQuestionId === 1) return;
     // remove question and answer in the answerPool
     await this.props.removeAnAnswerFromAnswerPool(this.state.currentQuestionId);
 
@@ -197,7 +198,7 @@ class Questionnaire extends Component {
       const prevQuestionId = prevState.prevQuestionIds.pop();
       const prevInputs = prevState.prevInputs.pop();
       const prevAnswerType = prevState.prevAnswerTypes.pop();
-      const isAtStart = prevState.prevQuestionId !== 1;
+      const isAtStart = prevQuestionId !== 1;
 
       return {
         currentQuestionId: prevQuestionId,
