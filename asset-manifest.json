@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/bee-in-berlin/static/css/main.edbdc668.chunk.css",
-    "main.js": "/bee-in-berlin/static/js/main.d6310d16.chunk.js",
-    "main.js.map": "/bee-in-berlin/static/js/main.d6310d16.chunk.js.map",
+    "main.js": "/bee-in-berlin/static/js/main.77cfd93d.chunk.js",
+    "main.js.map": "/bee-in-berlin/static/js/main.77cfd93d.chunk.js.map",
     "runtime-main.js": "/bee-in-berlin/static/js/runtime-main.7b3a3203.js",
     "runtime-main.js.map": "/bee-in-berlin/static/js/runtime-main.7b3a3203.js.map",
     "static/js/2.ebcdd095.chunk.js": "/bee-in-berlin/static/js/2.ebcdd095.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.7b3a3203.js",
     "static/js/2.ebcdd095.chunk.js",
     "static/css/main.edbdc668.chunk.css",
-    "static/js/main.d6310d16.chunk.js"
+    "static/js/main.77cfd93d.chunk.js"
   ]
 }
